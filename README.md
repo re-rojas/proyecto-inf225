@@ -6,7 +6,7 @@ Este es el repositorio del "Grupo 1 - Einherjer" para el proyecto semestral de I
 
 + Eugenio Perez (_rol: 202073020-2_)
 + Rolando Rojas (_rol: 202073047-4_)
-+ Solveig Gluppe Aarø (_rol: _)
++ Solveig Gluppe Aarø (_rol: 202290197-7_)
 
 *Tutor*: Ernesto Roca
 
