@@ -1,6 +1,6 @@
 # Proyecto semestral Grupo 11 (_Einherjer_)
 
-Este es el repositorio del "Grupo 1 - Einherjer" para el proyecto semestral de INF225 del semestre 2023-1.
+Este es el repositorio del "Grupo 11 - Einherjer" para el proyecto semestral de INF225 del semestre 2023-1.
 
 ### Integrantes:
 
