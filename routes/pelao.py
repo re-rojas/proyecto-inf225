@@ -15,18 +15,21 @@ def index():
 def dimequien():
     return "El pelao "
 
-#poner datos altimetriocs -> almacenar datos altimetricos -> HU1
-#sacar datos altimetricos -> descargar datos altimetricos -> HU2
+#el primero es responsable de
+#proveer los métodos apropiados para publicar/descargar/buscar (solo por
+#nombre) un archivo-> HU1
+#el segundo debe proveer los métodos apropiados
+#para guardar/descargar metadata asociada -> HU2
 
 @pelao.get("/DATOALTIMETRICO")
 def get_datos_altimetrico():
-    return datos_altimetricos_Entity(conn.local.user.find())
+    return datos_altimetricos_Entity(conn.local.dato.find())
 
 @pelao.post("/DATOALTIMETRICO")
 def post_dato_altimetrico(dato : Dato):
     newdata = dict(dato)
-    print(newdata)
-    return "recibido"
+    id = conn.local.dato.save(newdata).inserted_id
+    return str(id)
 
 @pelao.get("/DATOALTIMETRICO/{id}")
 def get_dato_altimetrico():
