@@ -12,11 +12,10 @@ from database import (
     remove_Metadata,
 )
 
-origins = ['https://localhost:3000']#posible posterior conexión a react
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=['*'],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -1,13 +1,23 @@
 import rasterio
-src = rasterio.open("archivo.tif")
+src = rasterio.open("chile.tif")
+print(src)#obtener crs
+print()
 print(src.crs)#obtener crs
+print()
 print(src.bounds)#obtener limites
+print()
 print(src.files)
+print()
 print(src.dtypes)
+print()
 print(src.interleaving)
-print(src.count)#number of raster bands
+print()
+print(src.count)
+print()
 print(src.height)
+print()
 print(src.meta)
+print()
 
 '''
 en conclusión...

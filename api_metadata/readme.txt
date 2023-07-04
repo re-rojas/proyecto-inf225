@@ -8,4 +8,4 @@ Para el funcionamiento de esta api se utiliza:
 - MongoDB 6.0
 
 
-Correr api (por lo menos en Windows) con "python -m uvicorn main:app --reload"
+Correr api (por lo menos en Windows) con "python -m uvicorn main:app --reload --port 8005"
