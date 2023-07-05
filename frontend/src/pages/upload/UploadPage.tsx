@@ -19,6 +19,38 @@ const UploadPage = () => {
     }
   };
 
+  const handleSubmitMeta = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // Evita el comportamiento predeterminado del formulario
+
+    // Obtén los valores del formulario
+    const nombreArchivo = event.currentTarget.nombreArchivo.value;
+    const autor = event.currentTarget.autor.value;
+
+    // Llama a la función UploadMeta en React pasando los valores del formulario
+    uploadMeta(nombreArchivo, autor);
+  };
+
+  const uploadMeta = (nombreArchivo: string, autor: string) => {
+    const url = `http://127.0.0.1:8005/api/metadata/autoupload?nombre_archivo=${encodeURIComponent(
+      nombreArchivo
+    )}&autor=${encodeURIComponent(autor)}`;
+
+    const config = {
+      method: 'post',
+      url: url,
+      headers: {},
+    };
+
+    
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    };
+
   return (
     <div>
       <h2>Subir archivo:</h2>
@@ -27,6 +59,16 @@ const UploadPage = () => {
         <input type="file" name='file' /><br /><br />
         <button type='submit'>Submit</button>
       </form>
+      <h2>Subir metadata:</h2>
+      <form onSubmit={handleSubmitMeta}>
+      <label htmlFor="nombreArchivo">Nombre de Archivo:</label>
+      <input type="text" id="nombreArchivo" name="nombreArchivo" /><br /><br />
+
+      <label htmlFor="autor">Autor:</label>
+      <input type="text" id="autor" name="autor" /><br /><br />
+
+      <input type="submit" value="Enviar" />
+    </form>
     </div>
   );
 };

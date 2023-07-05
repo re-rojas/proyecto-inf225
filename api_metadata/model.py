@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class Metadata(BaseModel): #los que tienen obtener son los que deben implementarse por fuera de esta api
     nombre_archivo: str #obtener el nombre con src.files
-    size: float #obtener tamaño con os.path.getsize(file_path)
+    autor: str #obtener tamaño con os.path.getsize(file_path)
     driver: str #'GTiff'
     dtype: str #'uint16'
     nodata: str #None

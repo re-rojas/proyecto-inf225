@@ -30,7 +30,7 @@ async def upload_archivo(file: UploadFile = File(...)):
 
 @app.get("/archivo")
 def download_archivo(nombre:str):
-    file_path = f'uploads/{nombre}.tif'
+    file_path = f'uploads/{nombre}'
     if os.path.exists(file_path):
-        return FileResponse(file_path, media_type="font/woff", filename=f"{nombre}.tif")
+        return FileResponse(file_path, media_type="font/woff", filename=nombre)
     return {"error":"file not found"}

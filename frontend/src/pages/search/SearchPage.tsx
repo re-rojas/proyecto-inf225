@@ -7,6 +7,7 @@ type Props = {};
 
 const SearchPage = (props: Props) => {
     const [nombre, setNombre] = useState("");
+    const [coord, setCoord] = useState("");
     const [show, setShow] = useState(false);
     const [datos, setDatos] = useState([]);
 
@@ -35,6 +36,9 @@ const SearchPage = (props: Props) => {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setNombre(e.target.value);
     };
+    const handleChangeCoord = (e: ChangeEvent<HTMLInputElement>) => {
+        setCoord(e.target.value);
+    };
 
   return (
     <div>
@@ -49,13 +53,13 @@ const SearchPage = (props: Props) => {
         <div>{show?<p>{JSON.stringify(datos)}</p>:null}</div><br />
         <h2>Buscar por coordenadas:</h2>
         <div>
-            <label>Ingresar coordenadas:</label><br />
-            <input type="text" onChange={handleChange} value={nombre}/>
+            <label>Ingresar coordenadas: *no implementado</label><br />
+            <input type="text" onChange={handleChangeCoord} value={coord}/>
         </div>
         <div>
-            <button onClick={() => searchByName(nombre)}>Buscar</button>
+            <button onClick={() => searchByName(coord)}>Buscar</button>
         </div>
-        <div>{show?<p>{JSON.stringify(datos)}</p>:null}</div><br />
+        
     </div>
   );
 };

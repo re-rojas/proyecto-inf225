@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from model import Metadata
+import rasterio
 
 app = FastAPI()
 
@@ -20,6 +21,21 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+def create_type_metadata(metadata_dict,nombre,autor):
+    metadata = Metadata(
+        nombre_archivo=nombre,
+        autor=autor,
+        driver=metadata_dict['driver'],
+        dtype=metadata_dict['dtype'],
+        nodata=str(metadata_dict['nodata']),
+        width=metadata_dict['width'],
+        height=metadata_dict['height'],
+        count=metadata_dict['count'],
+        crs=str(metadata_dict['crs']),
+        transform=str(metadata_dict['transform'])
+    )
+    return metadata
 
 @app.get("/")
 def read_root():
@@ -41,6 +57,18 @@ async def get_Metadata_by_id(nombre_archivo:str):
 @app.post("/api/metadata", response_model=Metadata)#crear nueva instancia
 async def post_Metadata(Metadata:Metadata):
     response = await create_Metadata(Metadata.dict())
+    if response:
+        return response
+    raise HTTPException(400, "Bad Request")
+
+@app.post("/api/metadata/autoupload", response_model=Metadata)#crear nueva instancia automatica
+async def post_auto_Metadata(nombre_archivo:str,autor:str):
+    path = "../api_upload/uploads/"+nombre_archivo
+    src = rasterio.open(path)
+    metadata_dict = src.meta
+    metadata = create_type_metadata(metadata_dict,nombre_archivo,autor)
+    print(metadata)
+    response = await create_Metadata(metadata.dict())
     if response:
         return response
     raise HTTPException(400, "Bad Request")

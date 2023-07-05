@@ -6,7 +6,8 @@ print(src.crs)#obtener crs
 print()
 print(src.bounds)#obtener limites
 print()
-print(src.files)
+print(src.files[0])
+print(type(src.files[0]))
 print()
 print(src.dtypes)
 print()
